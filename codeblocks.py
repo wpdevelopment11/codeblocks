@@ -49,8 +49,9 @@ def add_language(files, edit_files):
         with open(file, encoding="utf-8", newline="") as f:
             for linenum, line in enumerate(f, 1):
                 stripped = line.strip()
-                if stripped.startswith("```") and not INTLINE_PATTERN.match(stripped) \
-                and (blockstate == Codeblock.OUT or is_made_of_char(stripped, "`") and len(stripped) >= backticks_num):
+                if (stripped.startswith("```") and not INTLINE_PATTERN.match(stripped)
+                        and (blockstate == Codeblock.OUT or is_made_of_char(stripped, "`")
+                            and len(stripped) >= backticks_num)):
                     if  blockstate == Codeblock.IN_WITH_LANG:
                         blockstate = Codeblock.OUT
                         if edit_files: temp.write(line)
