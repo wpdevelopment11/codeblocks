@@ -70,6 +70,23 @@ python3 codeblocks.py --edit /path/to/file.md
 python3 codeblocks.py /path/to/file.md
 ```
 
+## Docker
+
+Build the image:
+
+```bash
+cd codeblocks
+docker build -t codeblocks .
+```
+
+Insert the languages in all Markdown files in `/path/on/host`:
+
+* Replace `/path/on/host` with your Markdown files directory.
+
+```bash
+docker run --rm -v /path/on/host:/app/mdfiles codeblocks --edit mdfiles
+```
+
 ## Run tests
 
 ```bash
