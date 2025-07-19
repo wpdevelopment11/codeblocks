@@ -1,10 +1,10 @@
-## Description
+# Autoinsert the language into Markdown fenced code blocks 
 
-Find the fenced code blocks in the Markdown file that don't have the language specified.
+Find fenced code blocks in a Markdown file that don't have a language specified.
 Detect the language from the block contents and insert the language name after the starting fence.
 Print the resulting code blocks or edit the files in-place.
 
-Under the hood it uses [Magika](https://github.com/google/magika) (recommended) or [Guesslang](https://github.com/yoeo/guesslang) deep learning models to detect the language.
+Under the hood, it uses [Magika](https://github.com/google/magika) (recommended) or [Guesslang](https://github.com/yoeo/guesslang) deep learning models to detect the language.
 
 Tested on Windows and Linux.
 
@@ -25,12 +25,12 @@ pip install guesslang # May not work,
 ```
 
 > **Note:** <a id="guesslang"></a>
-> [Guesslang](https://github.com/yoeo/guesslang) is not maintained. I got it working on Windows with Python 3.10.
+> [Guesslang](https://github.com/yoeo/guesslang) is no longer maintained. I got it working on Windows with Python 3.10.
 >
-> First `pip install tensorflow==2.13`.
+> First, run `pip install tensorflow==2.13`.
 >
-> Next, copy [guesslang directory](https://github.com/yoeo/guesslang/tree/master/guesslang) to the top-level directory of your project.
-> Start the Python shell with `python` and run `import guesslang` to check if it's installed properly.
+> Next, copy the [guesslang directory](https://github.com/yoeo/guesslang/tree/master/guesslang) to the top-level directory of your project.
+> Start a Python shell with `python` and run `import guesslang` to check if it's installed properly.
 
 ## Usage
 
@@ -41,30 +41,30 @@ python3 codeblocks.py [--edit] path ...
 * `--edit`
 
   Edit files by inserting the language.
-  By default, files are not modified,
-  instead code blocks for which the language can be detected are printed to the terminal.
+  By default, files are not modified.
+  Instead, code blocks for which the language can be detected are printed to the terminal.
 
 * `path`
 
   Paths to process.
-  Can be Markdown files or directories, or any combination of them.
+  They can be Markdown files or directories, or any combination of them.
   Directories are processed recursively.
 
-### Insert the language names in all Markdown files in directory
+### Insert language names in all Markdown files in directory
 
-This command will edit your files, make a backup.
+This command will edit your files, so make a backup first.
 
 ```bash
 python3 codeblocks.py --edit /path/to/dir
 ```
 
-### Insert the language names in specified file(s) only
+### Insert language names in specified file(s) only
 
 ```bash
 python3 codeblocks.py --edit /path/to/file.md
 ```
 
-### Print code blocks with the detected language, without modifying files
+### Print code blocks with autoinserted languages, without modifying files
 
 ```bash
 python3 codeblocks.py /path/to/file.md
@@ -81,7 +81,7 @@ docker build -t codeblocks .
 
 Insert the languages in all Markdown files in `/path/on/host`:
 
-* Replace `/path/on/host` with your Markdown files directory.
+* Replace `/path/on/host` with the directory containing Markdown files.
 
 ```bash
 docker run --rm -v /path/on/host:/app/mdfiles codeblocks --edit mdfiles
@@ -101,10 +101,10 @@ and up to seven spaces otherwise.
 
 ## Motivation
 
-The language names in the fenced code blocks are commonly used for syntax highlighting.
+Language names in the fenced code blocks are commonly used for syntax highlighting.
 
-Some people forget to or don't know how to specify the language.
-This leads to a code that is not highlighted and hard to read.
+Some people forget to specify the language, or don't know how.
+This results in code that is not highlighted and hard to read.
 This script is intended to solve that issue.
 
 Example:
